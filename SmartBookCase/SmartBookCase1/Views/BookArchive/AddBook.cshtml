@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "AddBook";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+
+<form class="form-group" method="post">
+    <br />
+    <h3> KİTAP KAYITLARI </h3>
+    <h4> Smart-BookCase Kitap Kaydı Oluşturma Sayfası </h4>
+
+    <hr />
+    <div style="margin-top:40px" class="col-md-4">
+
+        <label> Book-Name : </label>
+        <input class="form-control" type="text" name="BookName" required />
+        <br />
+        <label> Category : </label>
+        <select name="BookCategory" class="form-control" required>
+            <option value="Roman">Roman</option>
+            <option value="Anı">Anı</option>
+            <option value="Araştırma-İnceleme">Araştırma-İnceleme</option>
+            <option value="Biyografi">Biyografi</option>
+            <option value="Edebiyat">Edebiyat</option>
+            <option value="Felsefe">Felsefe</option>
+            <option value="Gezi">Gezi</option>
+            <option value="İnceleme">İnceleme</option>
+            <option value="Masal">Masal</option>
+            <option value="Mizah">Mizah</option>
+            <option value="Psikoloji">Psikoloji</option>
+            <option value="Şiir">Şiir</option>
+            <option value="Sanat-Tasarım">Sanat-Tasarım</option>
+            <option value="Tarih">Tarih</option>
+            <option value="Bilim">Bilim</option>
+            <option value="Eğitim">Eğitim</option>
+            <option value="İş-Ekonomi-Hukuk">İş-Ekonomi-Hukuk</option>
+        </select>
+
+        <br />
+        <label> Stock :</label>
+        <input type="text" class="form-control" name="BookStock" required />
+        <br />
+        <label> Author :</label>
+        <input type="text" class="form-control" name="BookAuthor" required />
+        <br />
+        <label> Publisher-House :</label>
+        <input type="text" class="form-control" name="BookPublisherHouse" required />
+        <br />
+        <label> Barcode :</label>
+        <input type="text" class="form-control" name="BookBarcode" required />
+        <br />
+
+
+        <div style="margin-top:30px">
+            <button class="btn btn-success"> Kitap Kaydını Gerçekleştir </button>
+        </div>
+
+
+        <div style="margin-top:80px">
+            @Html.ActionLink("Back to MainMenu", "Index", "Home")
+        </div>
+
+    </div>
+
+</form>
+
+
+

@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "RentalOperations";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#tbl1').DataTable();
+    });
+</script>
+
+
+<h2>KİTAPLAR</h2>
+<br />
+
+@using (Html.BeginForm("RentalOperations", "BookRentals", FormMethod.Get))
+{
+    <p>
+        Kitap Adı ile Arama: @Html.TextBox("p")
+        <input type="submit" value="Ara" />
+    </p>
+}
+
+
+<br />
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+
+            <th>Name</th>
+            <th>Category</th>
+            <th>Stock</th>
+            <th>Author</th>
+            <th>Publisher-House</th>
+            <th>Barcode</th>
+            <th>Özellikler</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+        <tr>
+            @if (m.BookStock <= 0)
+            {
+                <td style="color:red">@m.BookName</td>
+                <td style="color:red">@m.BookCategory</td>
+                <td style="color:red">@m.BookStock</td>
+                <td style="color:red">@m.BookAuthor</td>
+                <td style="color:red">@m.BookPublisherHouse</td>
+                <td style="color:red">@m.BookBarcode</td>
+            }
+
+
+            else if (m.BookStock <= 2)
+            {
+                <td style="color:darkorange">@m.BookName</td>
+                <td style="color:darkorange">@m.BookCategory</td>
+                <td style="color:darkorange">@m.BookStock</td>
+                <td style="color:darkorange">@m.BookAuthor</td>
+                <td style="color:darkorange">@m.BookPublisherHouse</td>
+                <td style="color:darkorange">@m.BookBarcode</td>
+            }
+            else if (m.BookStock <= 4)
+            {
+                <td style="color:orange">@m.BookName</td>
+                <td style="color:orange">@m.BookCategory</td>
+                <td style="color:orange">@m.BookStock</td>
+                <td style="color:orange">@m.BookAuthor</td>
+                <td style="color:orange">@m.BookPublisherHouse</td>
+                <td style="color:orange">@m.BookBarcode</td>
+            }
+            else
+            {
+                <td>@m.BookName</td>
+                <td>@m.BookCategory</td>
+                <td>@m.BookStock</td>
+                <td>@m.BookAuthor</td>
+                <td>@m.BookPublisherHouse</td>
+                <td>@m.BookBarcode</td>
+            }
+
+            <td><a href="/BookRentals/AddBookRental/@m.BookID" class=" btn btn-info"> On-Loan </a>  <a href="/BookRentals/AllBookRental/@m.BookID" class=" btn btn-warning"> Rentals </a></td>
+        </tr>
+        }
+
+    </tbody>
+
+
+
+</table>
+
+
+
+
+

@@ -1,0 +1,55 @@
+﻿@model SmartBookCase1.Models.Entity.Class1
+
+@{
+    ViewBag.Title = "BookRentalDetail";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<div>
+    <br />
+    <h3>RENTAL</h3>
+    <h4>Rent-Information</h4>
+    <hr />
+
+    <h5> Book ID: </h5>
+    <strong> @Html.DisplayFor(model => model.BookArchivec.BookID) </strong>
+    <h5> Book Name: </h5>
+    <strong> @Html.DisplayFor(model => model.BookArchivec.BookName) </strong>
+    <h5> Book Category: </h5>
+    <strong> @Html.DisplayFor(model => model.BookArchivec.BookCategory) </strong>
+    <h5> Book Author: </h5>
+    <strong> @Html.DisplayFor(model => model.BookArchivec.BookAuthor) </strong>
+    <h5> Book Publisher-House: </h5>
+    <strong> @Html.DisplayFor(model => model.BookArchivec.BookPublisherHouse) </strong>
+    <h5> Book Barcode: </h5>
+    <strong> @Html.DisplayFor(model => model.BookArchivec.BookBarcode) </strong>
+    <h5> Rent Date: </h5>
+    <strong> @Html.DisplayFor(model => model.BookRentc.RentDate).ToString().TrimEnd('0', ':') </strong>
+    <h5> Rent Day: </h5>
+    <strong> @Html.DisplayFor(model => model.BookRentc.RentDay) </strong>
+    <h5> Return Date: </h5>
+    <strong> @Html.DisplayFor(model => model.BookRentc.ReturnDate).ToString().TrimEnd('0', ':') </strong>
+    <h5> Member ID: </h5>
+    <strong> @Html.DisplayFor(model => model.MemberInformationc.MemberID) </strong>
+    <h5> Member Name: </h5>
+    <strong> @Html.DisplayFor(model => model.MemberInformationc.MemberName) </strong>
+    <h5> Member Phone: </h5>
+    <strong> @Html.DisplayFor(model => model.MemberInformationc.MemberPhone) </strong>
+    <h5> Member E-Mail: </h5>
+    <strong> @Html.DisplayFor(model => model.MemberInformationc.MemberEmail) </strong>
+    <h5> Member Tc.No: </h5>
+    <strong> @Html.DisplayFor(model => model.MemberInformationc.MemberTcNo) </strong>
+    <h5> User ID : </h5>
+    <strong> @Html.DisplayFor(model => model.UserInformationc.UserID) </strong>
+    <h5> User Name: </h5>
+    <strong> @Html.DisplayFor(model => model.UserInformationc.UserName) </strong>
+    <br />
+    <br>
+    <a href="/BookRentals/RentalExtend/@Model.BookRentc.RentID/" class=" btn btn-info">Kiralama Süresini Güncelle </a>
+</div>
+
+
+<div style="margin-top:80px">
+    @Html.ActionLink("Back to Book-List", "RentalOperations", "BookRentals")
+</div>

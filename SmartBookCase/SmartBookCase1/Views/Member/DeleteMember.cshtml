@@ -1,0 +1,49 @@
+﻿@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+
+
+<form class="form-group" method="post">
+
+    
+
+    <div style="margin-top:40px" class="col-md-3">
+
+
+
+
+        <label> Password :</label>
+
+        <input type="password" class="form-control" id="myInput" name="UserPassword" required placeholder="User-Password" />
+        <h6></h6>
+        <input type="checkbox" onclick="myFunction()"> Show Password
+
+
+
+        <br />
+
+        <div style="margin-top:30px">
+            <button class="btn btn-primary"> Silme İşlemini Gerçekleştir</button>
+        </div>
+
+    </div>
+</form>
+
+<script>
+
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+</script>
+

@@ -1,0 +1,66 @@
+﻿@using SmartBookCase1.Models.Entity
+@model List<MemberInformation>
+
+
+
+@{
+    ViewBag.Title = "ViewMember";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<h2>Üyeler</h2>
+<br />
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#tbl1').DataTable();
+    });
+</script>
+
+@using (Html.BeginForm("ViewMember", "Member", FormMethod.Get))
+{
+    <p>
+        Üye Adı ile Arama: @Html.TextBox("p")
+        <input type="submit" value="Ara" />
+    </p>
+}
+
+
+<br />
+<div>
+    <table id="tbl1" class="table table-bordered">
+        <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>Phone</th>
+                <th>Tc.No</th>
+                <th>Özellikler</th>                
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.MemberName</td>
+                    <td>@m.MemberEmail</td>
+                    <td>@m.MemberPhone</td>
+                    <td>@m.MemberTcNo</td>
+
+                    <td><a href="/Member/EditMember/@m.MemberID" class=" btn btn-info"> Güncelle </a>  <a href="/Member/DeleteMember/@m.MemberID" class=" btn btn-warning"> Sil </a></td>
+                
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>
+

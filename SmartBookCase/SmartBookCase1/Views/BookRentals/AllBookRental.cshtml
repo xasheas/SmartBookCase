@@ -1,0 +1,77 @@
+﻿@using SmartBookCase1.Models.Entity
+@model List<BookRent>
+
+@{
+    ViewBag.Title = "AllBookRental";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tbl1').DataTable();
+    });
+</script>
+
+
+
+
+<h2>KİTAPLAR</h2>
+<br />
+
+
+
+
+<br />
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+
+            <th>Kiralama No</th>
+            <th>Kitap No</th>
+            <th>Üye No</th>
+            <th>Kiralama Tarihi</th>
+            <th>Gün</th>
+            <th>Teslim Tarihi</th>
+            <th>Teslim Durumu</th>
+            <th>Özellikler</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.RentID</td>
+                <td>@m.BookID</td>
+                <td>@m.MemberID</td>              
+                <td>@m.RentDate.ToString().TrimEnd('0',':')</td>                
+                <td>@m.RentDay</td>
+                <td>@m.ReturnDate.ToString().TrimEnd('0', ':')</td>
+                @if(m.IsReturn == true)
+                {
+                    <td style="color:green"> Teslim Edildi </td>
+                }
+                else
+                {
+                    <td style="color:red"> Teslim Edilmedi </td>
+                }
+
+                <td><a href="/BookRentals/BookRentalDetail/@m.RentID" class=" btn btn-info"> Detaylar </a></td>
+
+            </tr>
+        }
+
+    </tbody>
+
+
+
+</table>
+
+<div style="margin-top:80px">
+    @Html.ActionLink("Back to Book-List", "RentalOperations", "BookRentals")
+</div>
+
+

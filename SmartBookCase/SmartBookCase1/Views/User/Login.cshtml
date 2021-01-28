@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@if(ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+
+
+<form class="form-group" method="post">
+
+    <br />
+    <h3> GİRİŞ YAP  </h3>
+    <h4> Smart-BookCase Kullanıcı Giriş Sayfası </h4>
+    <hr />
+
+    <div style="margin-top:40px" class="col-md-3">
+
+
+        <label> E-Mail : </label>
+        <input type="text" class="form-control" name="UserEmail" required placeholder="User-Email" />
+        <br />
+        
+        <label> Password :</label>
+
+        <input type="password" class="form-control" id="myInput" name="UserPassword" required placeholder="User-Password" />
+        <h6></h6>
+        <input type="checkbox" onclick="myFunction()"> Show Password
+
+
+        <div style="margin-top:30px">
+            <button class="btn btn-primary"> Giriş Yap </button>
+        </div>
+
+        <br />
+
+        <div style="margin-top:80px">
+            @Html.ActionLink("Forgot Password?", "PasswordReset", "User") |
+            @Html.ActionLink("Sign Up", "NewUser", "User")           
+
+        </div>
+
+    </div>
+</form>
+
+
+
+<script>
+
+    function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+</script>
+

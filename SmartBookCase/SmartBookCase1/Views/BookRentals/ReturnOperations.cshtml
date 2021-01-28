@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "ReturnOperations";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#tbl1').DataTable();
+    });
+</script>
+
+
+<h2>KİTAPLAR</h2>
+<br />
+
+@using (Html.BeginForm("ReturnOperations", "BookRentals", FormMethod.Get))
+{
+    <p>
+        Tc.No ile Arama: @Html.TextBox("p")
+        <input type="submit" value="Ara" />
+    </p>
+}
+
+
+<br />
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Üye Numarası</th>
+            <th>Name</th>
+            <th>Tc.No</th>
+            <th>E-mail</th>
+            <th>Phone</th>
+            <th>Özellikler</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.MemberID</td>
+                <td>@m.MemberName</td>
+                <td>@m.MemberTcNo</td>
+                <td>@m.MemberEmail</td>
+                <td>@m.MemberPhone</td>
+
+                <td><a href="/BookRentals/ReturnBookRental/@m.MemberID" class=" btn btn-info"> Rentals </a></td>
+
+            </tr>
+        }
+
+    </tbody>
+
+
+
+</table>
+
+

@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SmartBookcaseDtbsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BookArchive">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BookCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BookStock" Type="Int32" Nullable="false" />
+    <Property Name="BookAuthor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BookBarcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BookPublisherHouse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BookRent" Relationship="Self.FK_BookRent_BookArchive" FromRole="BookArchive" ToRole="BookRent" />
+  </EntityType>
+  <EntityType Name="BookRent">
+    <Key>
+      <PropertyRef Name="RentID" />
+    </Key>
+    <Property Name="RentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="BookID" Type="Int32" Nullable="false" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="RentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsReturn" Type="Boolean" Nullable="false" />
+    <Property Name="RentDay" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BookArchive" Relationship="Self.FK_BookRent_BookArchive" FromRole="BookRent" ToRole="BookArchive" />
+    <NavigationProperty Name="MemberInformation" Relationship="Self.FK_BookRent_MemberInformation" FromRole="BookRent" ToRole="MemberInformation" />
+    <NavigationProperty Name="UserInformation" Relationship="Self.FK_BookRent_UserInformation" FromRole="BookRent" ToRole="UserInformation" />
+  </EntityType>
+  <EntityType Name="MemberInformation">
+    <Key>
+      <PropertyRef Name="MemberID" />
+    </Key>
+    <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MemberEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MemberPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MemberTcNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BookRent" Relationship="Self.FK_BookRent_MemberInformation" FromRole="MemberInformation" ToRole="BookRent" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserInformation">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserPhone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserIncorrectEntry" Type="Int32" />
+    <NavigationProperty Name="BookRent" Relationship="Self.FK_BookRent_UserInformation" FromRole="UserInformation" ToRole="BookRent" />
+  </EntityType>
+  <Association Name="FK_BookRent_BookArchive">
+    <End Role="BookArchive" Type="Self.BookArchive" Multiplicity="1" />
+    <End Role="BookRent" Type="Self.BookRent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookArchive">
+        <PropertyRef Name="BookID" />
+      </Principal>
+      <Dependent Role="BookRent">
+        <PropertyRef Name="BookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookRent_MemberInformation">
+    <End Role="MemberInformation" Type="Self.MemberInformation" Multiplicity="1" />
+    <End Role="BookRent" Type="Self.BookRent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberInformation">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="BookRent">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookRent_UserInformation">
+    <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="1" />
+    <End Role="BookRent" Type="Self.BookRent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInformation">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="BookRent">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SmartBookcaseDtbsEntities13" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BookArchive" EntityType="Self.BookArchive" />
+    <EntitySet Name="BookRent" EntityType="Self.BookRent" />
+    <EntitySet Name="MemberInformation" EntityType="Self.MemberInformation" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="UserInformation" EntityType="Self.UserInformation" />
+    <AssociationSet Name="FK_BookRent_BookArchive" Association="Self.FK_BookRent_BookArchive">
+      <End Role="BookArchive" EntitySet="BookArchive" />
+      <End Role="BookRent" EntitySet="BookRent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookRent_MemberInformation" Association="Self.FK_BookRent_MemberInformation">
+      <End Role="MemberInformation" EntitySet="MemberInformation" />
+      <End Role="BookRent" EntitySet="BookRent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookRent_UserInformation" Association="Self.FK_BookRent_UserInformation">
+      <End Role="UserInformation" EntitySet="UserInformation" />
+      <End Role="BookRent" EntitySet="BookRent" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

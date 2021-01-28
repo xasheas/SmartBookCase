@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SmartBookcaseDtbsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BookArchive">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BookCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BookStock" Type="int" Nullable="false" />
+    <Property Name="BookAuthor" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BookBarcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BookPublisherHouse" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="BookRent">
+    <Key>
+      <PropertyRef Name="RentID" />
+    </Key>
+    <Property Name="RentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="BookID" Type="int" Nullable="false" />
+    <Property Name="MemberID" Type="int" Nullable="false" />
+    <Property Name="RentDate" Type="date" Nullable="false" />
+    <Property Name="ReturnDate" Type="date" Nullable="false" />
+    <Property Name="IsReturn" Type="bit" Nullable="false" />
+    <Property Name="RentDay" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MemberInformation">
+    <Key>
+      <PropertyRef Name="MemberID" />
+    </Key>
+    <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MemberEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MemberPhone" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="MemberTcNo" Type="nvarchar" MaxLength="11" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="UserInformation">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserPhone" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="UserIncorrectEntry" Type="int" />
+  </EntityType>
+  <Association Name="FK_BookRent_BookArchive">
+    <End Role="BookArchive" Type="Self.BookArchive" Multiplicity="1" />
+    <End Role="BookRent" Type="Self.BookRent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookArchive">
+        <PropertyRef Name="BookID" />
+      </Principal>
+      <Dependent Role="BookRent">
+        <PropertyRef Name="BookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookRent_MemberInformation">
+    <End Role="MemberInformation" Type="Self.MemberInformation" Multiplicity="1" />
+    <End Role="BookRent" Type="Self.BookRent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberInformation">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="BookRent">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookRent_UserInformation">
+    <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="1" />
+    <End Role="BookRent" Type="Self.BookRent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInformation">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="BookRent">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SmartBookcaseDtbsModelStoreContainer">
+    <EntitySet Name="BookArchive" EntityType="Self.BookArchive" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookRent" EntityType="Self.BookRent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberInformation" EntityType="Self.MemberInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserInformation" EntityType="Self.UserInformation" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BookRent_BookArchive" Association="Self.FK_BookRent_BookArchive">
+      <End Role="BookArchive" EntitySet="BookArchive" />
+      <End Role="BookRent" EntitySet="BookRent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookRent_MemberInformation" Association="Self.FK_BookRent_MemberInformation">
+      <End Role="MemberInformation" EntitySet="MemberInformation" />
+      <End Role="BookRent" EntitySet="BookRent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookRent_UserInformation" Association="Self.FK_BookRent_UserInformation">
+      <End Role="UserInformation" EntitySet="UserInformation" />
+      <End Role="BookRent" EntitySet="BookRent" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

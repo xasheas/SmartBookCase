@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "AddMember";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+
+<form class="form-group" method="post">
+    <br />
+    <h3> ÜYE KAYITLARI </h3>
+    <h4> Smart-BookCase Üye Kaydı Oluşturma Sayfası </h4>
+
+    <hr />
+    <div style="margin-top:40px" class="col-md-4">
+
+        <label> Name-Surname : </label>
+        <input class="form-control" type="text" name="MemberName" required />
+        <br />
+        <label> E-Mail : </label>
+        <input type="text" class="form-control" name="MemberEmail" required />
+        <br />
+        <label> Phone-Number :</label>
+        <input type="text" class="form-control" name="MemberPhone" required />
+        <br />
+        <label> Tc No :</label>
+        <input type="text" class="form-control" name="MemberTcNo" required />
+        <br />
+
+
+
+        <div style="margin-top:30px">
+            <button class="btn btn-success"> Üye Kaydını Gerçekleştir </button>
+        </div>
+
+
+        <div style="margin-top:80px">
+            @Html.ActionLink("Back to MainMenu", "Index", "Home")
+        </div>
+
+    </div>
+
+</form>
+

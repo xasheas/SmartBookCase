@@ -1,0 +1,65 @@
+﻿@model SmartBookCase1.Models.Entity.BookArchive
+
+@{
+    ViewBag.Title = "AddBookRental";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+
+<form class="form-group" method="post">
+    <br />
+    <h3> KİTAP KİRALAMALARI </h3>
+    <h4> Kitap Ödünç-Verme Kaydı Oluşturma Sayfası </h4>
+
+    <hr />
+    <div style="margin-top:40px" class="col-md-4">
+
+
+        <label> Kitap No :  </label>
+        @Html.DisplayFor(model => model.BookID)
+        <br />
+        <label> Kitap Adı :  </label>
+        @Html.DisplayFor(model => model.BookName)
+        <hr />
+        <label> Üye TC.No : </label>
+        <input class="form-control" type="text" name="MemberTcNo" required />
+        <br />
+        <label> Kiralama Tarihi : </label>
+        <input class="form-control" type="datetime-local" name="RentDate" required />
+        <br />
+        <label> Kiralama Süresi :</label>
+        <select class="form-control" name="RentDay" required>
+            <option value="3">3</option>
+            <option value="7">7</option>
+            <option value="14">14</option>
+            <option value="21">21</option>
+            <option value="30">30</option>
+
+        </select>
+        <br />
+
+
+
+        <div style="margin-top:30px">
+            <button class="btn btn-success"> Kiralama Kaydını Gerçekleştir </button>
+        </div>
+
+
+        <div style="margin-top:80px">
+            @Html.ActionLink("Back to Book-List", "RentalOperations", "BookRentals")
+        </div>
+
+    </div>
+
+</form>
+
+

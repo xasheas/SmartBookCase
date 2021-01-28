@@ -1,0 +1,53 @@
+﻿@model SmartBookCase1.Models.Entity.UserInformation
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+
+<div>
+    <br />
+    <h3>Profile</h3>
+    <h4>User-Information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserPassword)
+        </dt>
+
+        <dd>
+            <p> ********** </p>
+        </dd>
+
+    </dl>
+</div>
+<p style="margin-top:100px">
+    @Html.ActionLink("Edit Profile", "Edit", new { id = Model.UserID }) |
+    @Html.ActionLink("Back to MainMenu", "Index","Home")
+</p>

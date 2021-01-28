@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0f6ca6dc01c64434afd4c7eebf28ae48" Name="Diagram1">
+        <EntityTypeShape EntityType="SmartBookcaseDtbsModel.BookArchive" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBookcaseDtbsModel.BookRent" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBookcaseDtbsModel.MemberInformation" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBookcaseDtbsModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBookcaseDtbsModel.UserInformation" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="SmartBookcaseDtbsModel.FK_BookRent_BookArchive" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBookcaseDtbsModel.FK_BookRent_MemberInformation" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBookcaseDtbsModel.FK_BookRent_UserInformation" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
